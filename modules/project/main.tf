@@ -4,4 +4,5 @@ module "project-factory" {
   name            = var.project_name
   billing_account = var.billing_account
   org_id          = var.org_id
+
 }
