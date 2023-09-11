@@ -32,16 +32,16 @@ jobs:
           script: |
             console.log("${{ steps.changed-files.outputs.all_modified_files }}");
             const paths = "${{ steps.changed-files.outputs.all_modified_files }}";
-            const regex = /(?:\/modules\/|modules\/)([^/]+)\/[^/]+/g;
-            const matches = paths.match(regex);
-
+            const regex = /modules\/([^/]+)/g;
+            const matches = inputString.match(regex);
+            
             if (!matches) {
               return [];
             }
-
+            
             // Extract the module names from the matches
             const moduleNames = matches.map(match => {
-              return match.replace('/modules/', '').split('/')[0];
+              return match; // Extract the entire match
             });
             
             // Remove duplicates and return the unique module names
@@ -66,7 +66,7 @@ jobs:
       - name: Render terraform docs and push changes back to PR
         uses: terraform-docs/gh-actions@v1
         with:
-          working-dir: modules/${{ matrix.module }}
+          working-dir: ${{ matrix.module }}
           output-file: README.md
           output-method: inject
           git-push: "true"
@@ -80,7 +80,7 @@ jobs:
         module: ${{ needs.find-changes.outputs.changed-modules }}
     defaults:
       run:
-        working-directory: modules/${{ matrix.module }}
+        working-directory: ${{ matrix.module }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
