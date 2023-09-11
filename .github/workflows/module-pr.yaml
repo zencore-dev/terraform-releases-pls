@@ -45,10 +45,9 @@ jobs:
               });
             
               return uniqueModulePaths;
+              console.log(uniqueModulePaths);
             }
-            const result = extractModulePaths(paths);
-            console.log(result);
-            return result;
+            return extractModulePaths(paths);
 
   update-readme:
     name: Update README for changed modules
