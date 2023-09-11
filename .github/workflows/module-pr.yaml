@@ -42,9 +42,8 @@ jobs:
             });
             // Remove duplicates and return the unique module names
             const uniqueModuleNames = Array.from(new Set(moduleNames));
-            const commaSeparatedModuleNames = uniqueModuleNames.join(", ");
-            console.log(commaSeparatedModuleNames);
-            return commaSeparatedModuleNames;
+            console.log(uniqueModuleNames);
+            return uniqueModuleNames;
 
   update-readme:
     name: Update README for changed modules
