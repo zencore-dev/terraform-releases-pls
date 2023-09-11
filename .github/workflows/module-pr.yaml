@@ -33,7 +33,7 @@ jobs:
             console.log("${{ steps.changed-files.outputs.all_modified_files }}");
             const paths = "${{ steps.changed-files.outputs.all_modified_files }}";
             const regex = /modules\/([^/]+)/g;
-            const matches = inputString.match(regex);
+            const matches = paths.match(regex);
             
             if (!matches) {
               return [];
