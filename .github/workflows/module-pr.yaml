@@ -32,22 +32,26 @@ jobs:
           script: |
             console.log("${{ steps.changed-files.outputs.all_modified_files }}");
             const paths = "${{ steps.changed-files.outputs.all_modified_files }}";
-            function extractModulePaths(inputString) {
-              // Use a regular expression to find all occurrences of "/modules/.../..."
-              const regex = /\/modules\/([^/]+)\/[^/]+/g;
+            // Use a regular expression to find all occurrences of "/modules/.../..." or "modules/.../..."
+            const regex = /(?:\/)?modules\/([^/]+)\/[^/]+/g;
+            const allMatches = [];
+            // Loop through each input string and extract matches
+            paths.forEach(inputString => {
               const matches = inputString.match(regex);
-              if (!matches) {
-                return [];
+              if (matches) {
+                allMatches.push(...matches);
               }
-              // Remove duplicates and extract the module paths
-              const uniqueModulePaths = Array.from(new Set(matches)).map(match => {
-                return match.replace(/^\/modules\//, '');
-              });
-            
-              return uniqueModulePaths;
-              console.log(uniqueModulePaths);
+            });
+            if (allMatches.length === 0) {
+              return [];
             }
-            return extractModulePaths(paths);
+            // Remove duplicates and extract the module paths
+            const uniqueModulePaths = Array.from(new Set(allMatches)).map(match => {
+              return match.replace(/^\/?modules\//, '');
+            });
+            return uniqueModulePaths;
+            console.log(uniqueModulePaths);
+            return uniqueModulePaths;
 
   update-readme:
     name: Update README for changed modules
