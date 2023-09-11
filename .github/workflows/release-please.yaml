@@ -18,8 +18,6 @@ jobs:
     outputs:
       module-paths: ${{ steps.change-finder.outputs.module-paths }}
     steps:
-    module-paths: ${{ steps.change-finder.outputs.module-paths }}
-    steps:
       - uses: actions/checkout@v4
       - run: npm install @octokit/action
         name: Install Octokit
