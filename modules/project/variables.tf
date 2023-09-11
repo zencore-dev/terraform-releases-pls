@@ -5,7 +5,7 @@ variable "project_name" {
 
 variable "org_id" {
   type        = string
-  description = "The organization id"
+  description = "The organization id number"
 }
 
 variable "billing_account" {
