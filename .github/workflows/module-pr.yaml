@@ -11,15 +11,14 @@ permissions:
 
 jobs:
   change-finder:
-    name: Setup workflow
+    name: Change finder for modules folders
     runs-on: ubuntu-latest
     outputs:
-      module-paths: ${{ steps.find_changes.outputs.module-paths }}
+      module-paths: ${{ steps.change-finder.outputs.module-paths }}
     steps:
-      - name: Checkout
       - uses: actions/checkout@v2
-      - id: find_changes
-        uses: actions/github-script@v4
+      - id: change-finder
+        uses: actions/checkout@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
