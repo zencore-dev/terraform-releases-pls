@@ -53,6 +53,7 @@ jobs:
               };
             }
             modules_paths = Array.from(modules_paths);
+            console.log(modules_paths);
             return modules_paths;
       - name: Set output
         id: set-output
