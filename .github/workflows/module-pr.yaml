@@ -34,21 +34,18 @@ jobs:
             const paths = "${{ steps.changed-files.outputs.all_modified_files }}";
             // Use a regular expression to find all occurrences of "/modules/.../..." or "modules/.../..."
             const regex = /(?:\/)?modules\/([^/]+)\/[^/]+/g;
-            const allMatches = [];
-            // Loop through each input string and extract matches
-            paths.forEach(inputString => {
-              const matches = inputString.match(regex);
-              if (matches) {
-                allMatches.push(...matches);
-              }
-            });
-            if (allMatches.length === 0) {
+            const matches = paths.match(regex);
+          
+            if (!matches) {
               return [];
             }
+          
             // Remove duplicates and extract the module paths
-            const uniqueModulePaths = Array.from(new Set(allMatches)).map(match => {
+            const uniqueModulePaths = Array.from(new Set(matches)).map(match => {
               return match.replace(/^\/?modules\//, '');
             });
+          
+            return uniqueModulePaths;
             return uniqueModulePaths;
             console.log(uniqueModulePaths);
             return uniqueModulePaths;
