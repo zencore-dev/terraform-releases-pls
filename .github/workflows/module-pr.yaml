@@ -32,7 +32,7 @@ jobs:
         with:
           script: |
             console.log(${{ steps.changed-files.outputs.all_modified_files }});
-            const paths = ${{ steps.changed-files.outputs.all_modified_files }};
+            const paths = "${{ steps.changed-files.outputs.all_modified_files }}"";
             function extractModulePaths(inputString) {
               // Use a regular expression to find all occurrences of "/modules/.../..."
               const regex = /\/modules\/([^/]+)\/[^/]+/g;
