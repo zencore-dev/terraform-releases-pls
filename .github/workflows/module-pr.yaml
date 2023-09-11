@@ -14,9 +14,7 @@ jobs:
     name: Find in modules folder
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.changed-modules.outputs.matrix }}
-      changed_modules: ${{ steps.changed-modules.outputs.paths }}
-      changed_modules_spaces: ${{ steps.changed-modules.outputs.changed_modules_spaces }}
+      changed-modules: ${{ steps.changed-modules.outputs.result }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,7 +40,7 @@ jobs:
               }
               return moduleNames;
             };
-            return = getModuleNames(paths);
+            return getModuleNames(paths);
 
   update-readme:
     name: Update README for changed modules
@@ -57,7 +55,7 @@ jobs:
       - name: Render terraform docs and push changes back to PR
         uses: terraform-docs/gh-actions@v1
         with:
-          working-dir: ${{ needs.find-changes.outputs.changed_modules }}
+          working-dir: ${{ needs.find-changes.outputs.changed-modules }}
           output-file: README.md
           output-method: inject
           git-push: "true"
@@ -67,10 +65,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: find-changes
     strategy:
-      matrix: ${{fromJson(needs.find-changes.outputs.matrix)}}
+      matrix: ${{fromJson(needs.find-changes.outputs.changed-modules)}}
     defaults:
       run:
-        working-directory: ${{ matrix.module }}
+        working-directory: ${{ changed-modules }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
