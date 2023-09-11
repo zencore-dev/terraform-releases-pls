@@ -45,8 +45,6 @@ jobs:
               return match.replace(/^\/?modules\//, '');
             });
           
-            return uniqueModulePaths;
-            return uniqueModulePaths;
             console.log(uniqueModulePaths);
             return uniqueModulePaths;
 
