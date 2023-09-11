@@ -1,3 +1,5 @@
+name: Release please workflow
+
 on:
   push:
     branches:
@@ -10,7 +12,7 @@ permissions:
   pull-requests: write
   packages: write
 
-name: release-please-module
+
 jobs:
   find-release-changes:
     name: Change finder for modules folders
@@ -54,7 +56,7 @@ jobs:
             return modules_paths;
       - name: Set output
         id: set-output
-        run: echo "{module-paths}=${{ steps.change-finder.outputs.result }}" >> $GITHUB_OUTPUT
+        run: echo "module-paths=${{ steps.change-finder.outputs.result }}" >> $GITHUB_OUTPUT
 
   release-pr:
     runs-on: ubuntu-latest
