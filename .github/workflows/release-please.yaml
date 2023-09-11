@@ -51,7 +51,7 @@ jobs:
               };
             }
             modules_paths = Array.from(modules_paths);
-            return JSON.stringify(modules_paths);
+            return modules_paths;
       - name: Set output
         id: set-output
         run: echo "{module-paths}=${{ steps.change-finder.outputs.result }}" >> $GITHUB_OUTPUT
