@@ -16,7 +16,7 @@ jobs:
     name: Change finder for modules folders
     runs-on: ubuntu-latest
     outputs:
-      module-paths: ${{ steps.change-finder.outputs.module-paths }}
+      module-paths: ${{ steps.set-output.outputs.module-paths }}
     steps:
       - uses: actions/checkout@v4
       - run: npm install @octokit/action
@@ -48,7 +48,10 @@ jobs:
               };
             }
             modules_paths = Array.from(modules_paths);
-            console.log(`::set-output name=module-paths::${JSON.stringify(modules_paths)}`);
+            return JSON.stringify(modules_paths);
+      - name: Set output
+        id: set-output
+        run: echo "{module-paths}=${{ steps.change-finder.outputs.result }}" >> $GITHUB_OUTPUT
 
   release-pr:
     runs-on: ubuntu-latest
