@@ -33,15 +33,15 @@ jobs:
             const status = execSync(`git diff --name-only ${latestRelease.data.tag_name} origin/master`, { encoding: 'utf-8'});
             console.log(status);
             const changes = status.split('\n');
-            let module-paths = new Set();
+            let modules_paths = new Set();
             for (const change of changes) {
               if (change.startsWith('modules/')) {
                   const library = change.split('/')[1];
-                  module-paths.add(library);
+                  modules_paths.add(library);
               };
             }
-            module-paths = Array.from(module-paths);
-            console.log(`::set-output name=module-paths::${JSON.stringify(module-paths)}`);
+            modules_paths = Array.from(modules_paths);
+            console.log(`::set-output name=module-paths::${JSON.stringify(modules_paths)}`);
 
   update-readme:
     name: Update README for changed modules
