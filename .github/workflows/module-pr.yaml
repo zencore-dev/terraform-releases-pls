@@ -48,7 +48,7 @@ jobs:
             
               return uniqueModulePaths;
             }
-            const result = extractModulePaths(inputString);
+            const result = extractModulePaths(paths);
             console.log(result);
             return result;
 
