@@ -24,7 +24,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v39
         with:
-          files_ignore: '**/CHANGELOG.md **/workflows/**'
+          files_ignore: '.github/workflows/**'
       - name: Get changed modules
         id: changed-modules
         uses: actions/github-script@v6.4.1
@@ -36,11 +36,9 @@ jobs:
               // Use a regular expression to find all occurrences of "/modules/.../..."
               const regex = /\/modules\/([^/]+)\/[^/]+/g;
               const matches = inputString.match(regex);
-            
               if (!matches) {
                 return [];
               }
-            
               // Remove duplicates and extract the module paths
               const uniqueModulePaths = Array.from(new Set(matches)).map(match => {
                 return match.replace(/^\/modules\//, '');
