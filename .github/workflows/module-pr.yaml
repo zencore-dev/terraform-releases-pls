@@ -34,9 +34,10 @@ jobs:
             const paths = ${{ steps.changed-files.outputs.all_modified_files }};
             const getModuleNames = (paths) => {
               const moduleNames = [];
-              const fileExtensionRegex = '/\.[^.]+$/';
-              for (const path of paths) {
-                const moduleName = path.replace(fileExtensionRegex, "");
+              const pathsArray = paths.split(" ");
+              for (const path of pathsArray) {
+                const moduleName = path.replace(/\.[^.]+$/, "");
+                moduleName = moduleName.replace(/^\./, "");
                 moduleNames.push(moduleName);
               }
               return moduleNames;
