@@ -32,7 +32,7 @@ jobs:
           script: |
             console.log("${{ steps.changed-files.outputs.all_modified_files }}");
             const paths = "${{ steps.changed-files.outputs.all_modified_files }}";
-            const regex = /(?:^|\s)(?:\/modules\/)?([^/]+)\/[^/]+/g;
+            const regex = /\/modules\/([^/]+)\/[^/]+/g;
             const matches = paths.match(regex);
 
             if (!matches) {
@@ -41,16 +41,14 @@ jobs:
             
             // Extract the module names from the matches
             const moduleNames = matches.map(match => {
-              const matchParts = match.split('/');
-              const moduleNameIndex = matchParts.indexOf('modules') + 1;
-              if (moduleNameIndex >= 0 && moduleNameIndex < matchParts.length) {
-                return matchParts[moduleNameIndex];
-              }
-              return null;
-            }).filter(moduleName => moduleName !== null);
+              return match.replace('/modules/', '').split('/')[0];
+            });
+            
+            // Filter out "modules" and empty strings
+            const validModuleNames = moduleNames.filter(moduleName => moduleName !== 'modules' && moduleName.trim() !== '');
             
             // Remove duplicates and return the unique module names
-            const uniqueModuleNames = Array.from(new Set(moduleNames));
+            const uniqueModuleNames = Array.from(new Set(validModuleNames));
 
             console.log(uniqueModuleNames);
             return uniqueModuleNames;
@@ -71,7 +69,7 @@ jobs:
       - name: Render terraform docs and push changes back to PR
         uses: terraform-docs/gh-actions@v1
         with:
-          working-dir: ${{ matrix.module }}
+          working-dir: modules/${{ matrix.module }}
           output-file: README.md
           output-method: inject
           git-push: "true"
@@ -85,7 +83,7 @@ jobs:
         module: ${{ needs.find-changes.outputs.changed-modules }}
     defaults:
       run:
-        working-directory: ${{ matrix.module }}
+        working-directory: modules/${{ matrix.module }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
