@@ -12,7 +12,6 @@ permissions:
   pull-requests: write
   packages: write
 
-
 jobs:
   find-release-changes:
     name: Change finder for modules folders
