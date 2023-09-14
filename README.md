@@ -112,3 +112,9 @@ Using Conventional Commits helps us create meaningful changelogs and simplify ve
 For more information on Conventional Commits, please refer to the [official specification](https://www.conventionalcommits.org/).
 
 ---
+
+## License
+
+This repository is licensed under the [Apache License 2.0](LICENSE). You may obtain a copy of the License at [http://www.apache.org/licenses/](http://www.apache.org/licenses/).
+
+---
