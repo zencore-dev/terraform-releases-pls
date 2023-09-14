@@ -3,5 +3,5 @@ module "project-factory" {
   version         = "14.3.0"
   name            = var.project_name
   billing_account = var.billing_account
-  org_id          = var.org_id
+  org_id          = var.org_id_number
 }
