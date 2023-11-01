@@ -13,8 +13,8 @@ variable "billing_account" {
   description = "The billing account id"
 }
 
-variable "fake_variable" {
+variable "fake_variable2" {
   type        = string
-  description = "fake variable"
+  description = "fake variable 2"
 
 }
