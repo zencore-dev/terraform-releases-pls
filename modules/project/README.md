@@ -27,7 +27,7 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | The billing account id | `string` | n/a | yes |
-| <a name="input_fake_variable"></a> [fake\_variable](#input\_fake\_variable) | fake variable | `string` | n/a | yes |
+| <a name="input_fake_variable2"></a> [fake\_variable2](#input\_fake\_variable2) | fake variable 2 | `string` | n/a | yes |
 | <a name="input_org_id_number"></a> [org\_id\_number](#input\_org\_id\_number) | The organization id number | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The name of the project | `string` | n/a | yes |
 
