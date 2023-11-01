@@ -1,0 +1,7 @@
+{
+    "release-type": "terraform",
+    "packages": {
+        "modules/project": "1.0.0",
+        "modules/simple_network": "1.0.0"
+    }
+}
