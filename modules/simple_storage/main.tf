@@ -3,5 +3,4 @@ resource "google_storage_bucket" "auto-expire" {
   location      = "US"
   force_destroy = false
 
-  public_access_prevention = "enforced"
 }
