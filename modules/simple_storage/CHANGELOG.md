@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/zencore-dev/terraform-releases-pls/compare/simple_storage-v0.1.1...simple_storage-v1.0.0) (2023-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **modules/simple_storage:** remove the public access prevention ([#17](https://github.com/zencore-dev/terraform-releases-pls/issues/17))
+
+### Features
+
+* **modules/simple_storage:** remove the public access prevention ([#17](https://github.com/zencore-dev/terraform-releases-pls/issues/17)) ([0af7b11](https://github.com/zencore-dev/terraform-releases-pls/commit/0af7b11cb78bbc538702b9199cbb8630a4a45220))
+
 ## [0.1.1](https://github.com/zencore-dev/terraform-releases-pls/compare/simple_storage-v0.1.0...simple_storage-v0.1.1) (2023-11-09)
 
 
